@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodePen Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    /* Style for code block */
+    pre {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      overflow-x: auto; /* Enable horizontal scrolling */
+      white-space: pre-wrap; /* Preserve line breaks */
+    }
+
+    /* Style for inline code */
+    code {
+      font-family: monospace;
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>membuat halaman login mikrotik</h1>
+  <h2>Download bahan di bawah</h2>
+  <p>untuk logo silahkah pakai logo kalian sendiri</p>
+  <a href="assets/imgs/bg2.gif" download>background</a>
+  <a href="assets/imgs/lock.png" download>lock</a>
+ <a href="assets/imgs/unlock.png" download>unlock</a>
+ 
+  <p>buat file html dengan nama login.html</p>
+  <pre id="htmlCode">
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Login&lt;/title&gt;
+&lt;meta http-equiv="pragma" content="no-cache" /&gt;
+&lt;meta http-equiv="expires" content="-1" /&gt;    
+&lt;meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /&gt;
+&lt;link rel="stylesheet" href="login.css" media="screen"&gt;
+
+&lt;/head&gt;
+&lt;body class='login'&gt;
+    &lt;form name="sendin" action="$(link-login-only)" method="post"&gt;
+        &lt;input type="hidden" name="username" /&gt;
+        &lt;input type="hidden" name="password" /&gt;
+        &lt;input type="hidden" name="dst" value="$(link-orig)" /&gt;
+        &lt;input type="hidden" name="popup" value="true" /&gt;
+    &lt;/form&gt;
+    
+    &lt;script type="text/javascript" src="/md5.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+    
+        function doLogin() {
+        document.sendin.username.value = document.login.username.value;
+        document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+        document.sendin.submit();
+        return false;
+        }
+
+    &lt;/script&gt;
+&lt;form class="vertical-form" name="login" action="$(link-login-only)" method="post" background="#A03472"
+    $(if chap-id) onSubmit="return doLogin()" $(endif)&gt;
+&lt;input type="hidden" name="dst" value="$(link-orig)" /&gt;
+&lt;input type="hidden" name="popup" value="true" /&gt;
+&lt;div style="margin:0;padding:0;display:inline"&gt;
+&lt;/div&gt;
+&lt;legend&gt;
+  
+ &lt;h1 class="neon" data-text="U"&gt;L&lt;span class="flicker-slow"&gt;O&lt;/span&gt;G&lt;span class="flicker-fast"&gt;I&lt;/span&gt;N&lt;/h1&gt;
+&lt;aqui se puede escribir&gt;
+&lt;/legend&gt;
+&lt;input name="username" class="text" type="text" value="$(username)" placeholder="User" size="30" required/&gt;
+&lt;input autocomplete="off" class="password" name="password" type="password" label="false" placeholder="Password" size="20" required/&gt;
+  &lt;center&gt;
+  &lt;div class="btn-bg"&gt;
+  &lt;input name="submit" type="submit" value="" /&gt;
+  &lt;/div&gt;
+  &lt;/center&gt;
+    &lt;div class='footer'&gt;
+ &lt;marquee&gt;
+  &lt;p&gt;
+    Powered By Yusdev
+  &lt;/p&gt;
+ &lt;/marquee&gt;
+&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script type="text/javascript"&gt;
+  document.login.username.focus();
+&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+document.oncontextmenu = function(){return false;}
+&lt;/script&gt;
+&lt;audio autoplay&gt;
+&lt;source src="Dejavu.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<button onclick="copyText('htmlCode')">Copy HTML</button>
+  <br>
+  <p>berikan style dengan menambah file baru, beri nama login.css
+  </p>
+  <pre id="cssCode">
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+body {
+  background-image: url("bg2.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-width:100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: flex-box;
+  font-family: 'Orbitron', sans-serif;
+}
+marquee {
+  width: 150px;
+}
+.sembunyi {
+  display:none !important;
+}
+.logo{
+  position: relative;
+  top:0px; left:0px;
+  color: #00ff00;
+  width: 120px;
+}
+.login{
+position: relative;
+font-family:arial;
+  padding:50px 0 0 0;
+}
+.login{
+display:flex;
+  border-radius: 0px;
+  margin:0 auto 0px;
+}
+.login a,.login a:visited{
+  text-decoration:underline;
+  color:inherit}
+ul.notice{margin:30px auto;
+  width:300px;
+  text-align:center;
+  list-style-position:inside;
+  font-size:15px;
+  padding:20px 30px;
+  border-radius:3px
+}
+ul.notice.errors{
+  background-color:#fff4f4;
+  border:1px solid #262624;
+  color:#f50909
+}
+ul.notice.success{
+  background-color:#d7eacd;
+  border:1px solid #6fae4f;
+  color:#6fae4f
+}
+ul.notice li{
+  padding:5px 0;
+}
+.vertical-form{
+  margin:0 auto;
+  width: 260px;
+  background: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 20px;
+  border-top: 2px solid red;
+  border-bottom: 2px solid white;
+  box-shadow:  0px 0px 5px #000;
+}
+.vertical-form legend{
+  width:100%;
+  font-size:24px;
+  font-weight:500;
+  text-align:center;
+  margin:0 0 0px 0;
+}
+.text
+{
+  border-radius:20px;
+    box-shadow : 0 0 50px #4AA9C1;
+}
+.password
+{
+  border-radius:20px;
+    box-shadow : 0 0 50px #4AA9C1;
+}
+.vertical-form input[type='text'],.vertical-form input[type='password'],.vertical-form input[type='number']{
+  border:2px #000 solid;
+  color:#000;
+  background: rgba(0,0,0,0.5);
+  height:30px;
+  width:50px
+  font-size:18px;
+}
+.vertical-form input[type='text'],.vertical-form input[type='password'],.vertical-form input[type='submit'],.vertical-form input[type='number']
+{
+  display:block;
+  margin:5px auto 0px auto;
+  width:230px;
+  text-align:center;
+  color:#fff;
+  outline:none;
+  font-family:inherit;
+}
+.vertical-form input[type='submit']
+{
+  position: center;
+  background: url("lock.png");
+  	background-repeat: no-repeat; 
+  background-position:center;
+  background-size: cover;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  font-size:16px;
+  color:#fff;
+  font-weight:400;
+  outline:0;
+  letter-spacing:1.5px;
+  cursor:pointer;
+}
+.vertical-form input:hover[type='submit']{
+  background: url("unlock.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow : 0 0 70px green;
+  -webkit-transition:all 0.3s ease;
+  -moz-transition:all 0.3s ease;
+  -o-transition:all 0.3s ease;
+  transition:all 0.3s ease
+}
+.vertical-form .footer{
+  text-align:center;
+  color:#666;
+  position: relative;
+  margin-top: auto;
+}
+.vertical-form .footer p:first-child{
+  color:#ccc;
+}
+.vertical-form .footer a:first-child{
+  color:#00A9E0;
+}
+.vertical-form .footer p:nth-child(2) a{
+  border-bottom:solid 1px #000;
+}
+@media (max-width:0px){
+  .login{
+    padding:10px 0 0 0;
+  }
+}
+}
+@media screen and (max-width: 600px) {
+
+  .login {
+    width: 80%;/* Sesuaikan lebar container untuk layar kecil */
+  }
+  input {
+    width: 50;
+  }
+
+  /* Tambahkan aturan CSS tambahan untuk tampilan layar kecil jika diperlukan */
+}
+h1 {
+  margin-left: 20px;
+  color: #000;
+  text-align: center;
+}
+h1, p{
+  font-family: 'Orbitron', sans-serif;
+}
+.neon{
+  font-family: 'Monoton', cursive;
+  font-size:40px;
+  color: #FFD5FF;
+  font-weight: 400;
+  letter-spacing: 8px;
+  text-shadow: 1px 0px 4px #FFD5FF, 2px 0px 4px #FFD5FF, 3px 0px 4px #FFD5FF, 2px 0px 3px #D42CCA, 2px 3px 15px #D42CCA, 2px 0px 15px, 5px 0px 125px, 20px 0vw 200px #D42CCA,40px 0vw 200px #D42CCA;
+}
+
+.flicker-slow{
+  animation: flicker 3s linear infinite;
+}
+
+.flicker-fast{
+  animation: flicker 1s linear infinite;
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    //text-shadow: none;
+    opacity: .99;
+    
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+  }
+}
+.btn-bg{
+  background: blue;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px #00ff00;
+}
+.btn-bg:hover{
+  background: #00ff00;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px blue;
+}
+#myAudio {
+  outline: none;
+  background: transparent;
+  border: none;
+  box-decoration-break: none;
+  overflow: hidden;
+  display: none;
+}
+
+  </pre>
+  <button onclick="copyText('cssCode')">Copy CSS</button>
+  <p>Hasil Silahkan klik button di bawah</p>
+  <a href="hotspot/login.html"><button>Klik me</button></a>
+</div>
+<script>
+function copyText(id) {
+  var textarea = document.createElement("textarea");
+  textarea.value = document.getElementById(id).innerText;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+  alert("Text copied to clipboard!");
+}
+
+</script>
+</body>
+</html>
